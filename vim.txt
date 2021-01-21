@@ -54,3 +54,4 @@ map <Leader>m <esc>:tabnext<CR>
 set background=dark
 set hlsearch
 colorscheme gruvbox
+
