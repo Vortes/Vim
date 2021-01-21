@@ -22,6 +22,8 @@ Plug 'mattn/emmet-vim'
 Plug 'tmsvg/pear-tree'
  " Minimap"
 Plug 'wfxr/minimap.vim'
+ " Ale
+Plug 'dense-analysis/ale'
 call plug#end()
 
 " Mapping vim window switches
@@ -47,6 +49,11 @@ autocmd FileType python map <buffer> <Leader>r :w<CR>:exec '!clear;python3' shel
 " rebind leader key
 let mapleader = ","
 
+" Python Linter and fixer
+let g:ale_linters = {'python': ['flake8']}
+let g:ale_fixers = {'*': [], 'python': ['black']}
+let g:ale_fix_on_save = 1
+
 " earier moving thru tabs
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
@@ -54,4 +61,3 @@ map <Leader>m <esc>:tabnext<CR>
 set background=dark
 set hlsearch
 colorscheme gruvbox
-
