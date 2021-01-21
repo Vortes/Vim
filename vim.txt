@@ -1,0 +1,56 @@
+syntax on
+
+set ttimeoutlen=0
+set noshowmode
+set rnu
+set tabstop=4 softtabstop=4
+set nu
+set nowrap
+set clipboard=unnamed
+
+call plug#begin('~/.vim/plugged')
+ " Theme
+Plug 'morhetz/gruvbox'
+ " Status Line
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+ " File Tree"
+Plug 'preservim/nerdtree'
+ " Emmet"
+Plug 'mattn/emmet-vim'
+ " Auto pairing"
+Plug 'tmsvg/pear-tree'
+ " Minimap"
+Plug 'wfxr/minimap.vim'
+call plug#end()
+
+" Mapping vim window switches
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" easier moving of code blocks
+vnoremap < <gv
+vnoremap > >gv
+
+" Better backspace
+set backspace=indent,eol,start
+
+" Mapping emmet auto-complete
+let g:user_emmet_leader_key=','
+" Nerdtree keybind
+map <C-n> :NERDTreeToggle<CR>
+" python F9 run file keybind
+autocmd FileType python map <buffer> <Leader>r :w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
+
+" rebind leader key
+let mapleader = ","
+
+" earier moving thru tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+
+set background=dark
+set hlsearch
+colorscheme gruvbox
