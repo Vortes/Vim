@@ -24,30 +24,45 @@ Plug 'tmsvg/pear-tree'
 Plug 'wfxr/minimap.vim'
  " Ale
 Plug 'dense-analysis/ale'
+ " Surround
+Plug 'tpope/vim-surround'
+ " Commentary
+Plug 'tpope/vim-commentary'
+ " Tag Bar
+Plug 'majutsushi/tagbar'
+ " Fugitive (github)
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
+" rebind leader key
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+
 " Mapping vim window switches
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+map <Leader>h <C-w>h
+map <Leader>j <C-w>j
+map <Leader>k <C-w>k
+map <Leader>l <C-w>l
 
 " easier moving of code blocks
 vnoremap < <gv
 vnoremap > >gv
+
+" tag bar keybind
+nmap <leader>t : TagbarToggle<CR>
+let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 
 " Better backspace
 set backspace=indent,eol,start
 
 " Mapping emmet auto-complete
 let g:user_emmet_leader_key=','
+
 " Nerdtree keybind
 map <C-n> :NERDTreeToggle<CR>
+
 " python F9 run file keybind
 autocmd FileType python map <buffer> <Leader>r :w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
-
-" rebind leader key
-let mapleader = ","
 
 " Python Linter and fixer
 let g:ale_linters = {'python': ['flake8']}
@@ -58,6 +73,8 @@ let g:ale_fix_on_save = 1
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 
+:autocmd InsertEnter * set cul
+:autocmd InsertLeave * set nocul
+
 set background=dark
-set hlsearch
 colorscheme gruvbox
