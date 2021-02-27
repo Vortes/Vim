@@ -3,7 +3,7 @@ syntax on
 set ttimeoutlen=0
 set noshowmode
 set rnu
-set tabstop=4 softtabstop=4
+set tabstop=2 softtabstop=2
 set nu
 set nowrap
 set clipboard=unnamed
@@ -32,6 +32,18 @@ Plug 'tpope/vim-commentary'
 Plug 'majutsushi/tagbar'
  " Fugitive (github)
 Plug 'tpope/vim-fugitive'
+ " auto-complete with coc	
+Plug 'valloric/youcompleteme'
+ " all in one syntax highlighting
+Plug 'sheerun/vim-polyglot'
+ " repl
+Plug 'metakirby5/codi.vim'
+ " fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+ " eslint-react
+Plug 'yannickcr/eslint-plugin-react'
+ " Ultisnips
+Plug 'SirVer/ultisnips'
 call plug#end()
 
 " rebind leader key
@@ -52,6 +64,9 @@ vnoremap > >gv
 nmap <leader>t : TagbarToggle<CR>
 let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 
+" Run html
+nmap <leader>, :w <Bar> !open %<CR>
+
 " Better backspace
 set backspace=indent,eol,start
 
@@ -61,17 +76,24 @@ let g:user_emmet_leader_key=','
 " Nerdtree keybind
 map <C-n> :NERDTreeToggle<CR>
 
+" Trigger for ultisnips
+let g:UltiSnipsExpandTrigger="<C-l>"
+
 " python F9 run file keybind
 autocmd FileType python map <buffer> <Leader>r :w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
 
 " Python Linter and fixer
 let g:ale_linters = {'python': ['flake8']}
 let g:ale_fixers = {'*': [], 'python': ['black']}
+let g:ale_fixers['javascript'] = ['eslint']
+let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
 
 " earier moving thru tabs
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
+
+set completeopt-=preview
 
 :autocmd InsertEnter * set cul
 :autocmd InsertLeave * set nocul
